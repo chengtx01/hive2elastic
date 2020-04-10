@@ -41,8 +41,8 @@ def run():
 
     es = elasticsearch.Elasticsearch(conf['es_url'])
 
-    if not es.ping():
-        raise Exception("Elasticsearch server not reachable")
+    #if not es.ping():
+    #    raise Exception("Elasticsearch server not reachable")
 
     index_name = conf['es_index']
     index_type = conf['es_type']
