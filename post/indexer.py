@@ -2,7 +2,6 @@ import logging
 import multiprocessing as mp
 import sys
 import time
-import certifi
 
 import configargparse
 import elasticsearch
@@ -54,10 +53,10 @@ def run():
     except ProgrammingError:
         raise Exception("__h2e_posts table not exists in database")
 
-    es = elasticsearch.Elasticsearch(conf['es_url'], use_ssl=True, ca_certs=certifi.where())
+    es = elasticsearch.Elasticsearch(conf['es_url'])
 
-    #if not es.ping():
-    #    raise Exception("Elasticsearch server not reachable")
+    if not es.ping():
+        raise Exception("Elasticsearch server not reachable")
 
     index_name = conf['es_index']
     index_type = conf['es_type']
